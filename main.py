@@ -9,6 +9,8 @@ for i in range(20):
     car_lot.register()
 
 
+vehicles=set()
+
 issued_tickets = []
 
 def print_issued_tickets(tickets):
@@ -17,7 +19,14 @@ def print_issued_tickets(tickets):
 
 def park_vehicle_in_lot(lot,vehicle_class):
     lot.show_parking_slots()
-    reg_no = input("Enter vehicle Registration no ")
+    duplicate = True 
+    while duplicate :
+        reg_no = input("Enter vehicle Registration no ")
+        if reg_no not in vehicles : 
+            vehicles.add(reg_no)
+            duplicate = False 
+        else:
+            print("Vehicle with Registration Number already exist ")
     owner_name  = input("Enter name ")
     invalid = True
     while invalid:
