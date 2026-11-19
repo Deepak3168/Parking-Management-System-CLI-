@@ -19,16 +19,22 @@ def park_vehicle_in_lot(lot,vehicle_class):
     lot.show_parking_slots()
     reg_no = input("Enter vehicle Registration no ")
     owner_name  = input("Enter name ")
-    slot_index = int(input("Enter Slot"))
-    try:
-        parking_slot = lot.parking_slots[slot_index]
-    except IndexError as e : 
-        print(e)
-        return e
-    message,ticket = lot.park_vehicle(parking_slot,reg_no,owner_name,vehicle_class)
-    issued_tickets.append(ticket)
-    return message,ticket
+    invalid = True
+    while invalid:
+        slot_index = int(input("Enter Slot"))
+        try:
+            parking_slot = lot.parking_slots[slot_index]
+        except IndexError as e : 
+            print(e)
 
+        message,ticket = lot.park_vehicle(parking_slot,reg_no,owner_name,vehicle_class)
+        print(message)
+        issued_tickets.append(ticket)
+
+        if ticket : 
+            invalid = False
+    return message,ticket
+   
 
 billing = True
 
@@ -56,7 +62,8 @@ while billing :
         print("2) Car ")
         type = int(input("Enter Vehicle Type"))
         if type == 1 : 
-            park_vehicle_in_lot(bike_lot,Bike)
+            message,ticket = park_vehicle_in_lot(bike_lot,Bike)
+            print(message)
         elif type == 2 :
             park_vehicle_in_lot(car_lot,Car)
         else:

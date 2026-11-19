@@ -16,6 +16,7 @@ class ParkingSlot:
             self.__current_vehilce = vehilce 
             self.__availability_status = False
         else:
+            print("Error ")
             raise ValueError("Cannot add Vehicle Since slot is not already booked")
 
     def remove_vehicle(self):

@@ -34,6 +34,7 @@ class ParkingLot:
             
             return "VEHHICLE PARKED",parking_ticket
         except ValueError as e : 
+            
             return e ,None
 
 
